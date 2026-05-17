@@ -12,13 +12,8 @@ echo "   Repository: $REPO_OWNER/$REPO_NAME"
 curl -s -o opale.php "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH/opale.php"
 curl -s -o euclasio.php "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH/euclasio.php"
 curl -s -o style.css "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH/style.css"
-curl -s -o .update.sh.tmp "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH/update.sh"
-
-# Aggiorna update.sh (da file temporaneo per non corrompere lo script in esecuzione)
-if [ -f .update.sh.tmp ]; then
-    mv .update.sh.tmp update.sh
-    chmod +x update.sh
-fi
+curl -s -o update.sh "https://raw.githubusercontent.com/$REPO_OWNER/$REPO_NAME/$BRANCH/update.sh"
+chmod +x update.sh
 
 # Verifica
 if [ -f opale.php ] && [ -f euclasio.php ]; then
