@@ -1,11 +1,11 @@
 <?php
 /**
- * jsonToHtmlRender.php - Converte AST JSON in HTML con classi CSS semantiche.
+ * euclasio.php - Converte AST JSON in HTML con classi CSS semantiche.
  * 
- * Uso CLI: php jsonToHtmlRender.php file.json
+ * Uso CLI: php euclasio.php file.json
  */
 
-class JsonToHtmlRender
+class Euclasio
 {
     // Mappa icone per callout
     private array $calloutIcons = [
@@ -370,6 +370,6 @@ if (PHP_SAPI === 'cli') {
     if (!$input) exit(1);
     $data = json_decode($input, true);
     if (json_last_error()) exit(1);
-    $renderer = new JsonToHtmlRender();
+    $renderer = new Euclasio();
     echo $renderer->render($data);
 }
