@@ -177,7 +177,8 @@ class Opale {
         if ($trimmed === '') return true;
         // Tutti i blocchi che non sono paragrafo
         return preg_match('/^(#{1,6}\s|>\s|```|\$\$|!\[\[|\||\-(\s\[[ x]\]|\s)|\*\s|\d+\.\s)/', $trimmed)
-            || preg_match('/^(\-{3,}|\*{3,}|_{3,})\s*$/', $trimmed);
+            || preg_match('/^(\-{3,}|\*{3,}|_{3,})\s*$/', $trimmed)
+            || preg_match('/^\|.*\|/', $trimmed);
     }
 
     private function parseInlineContent($text) {
@@ -432,9 +433,18 @@ class Opale {
             $this->pos++;
         }
         if (count($lines) < 2) {
-            // tabella non valida, restituisci paragrafo
-            $this->pos -= count($lines); // rollback
-            return $this->parseParagraph();
+            // tabella non valida, restituisci paragrafo direttamente
+            $tokens = [];
+            foreach ($lines as $idx => $line) {
+                if ($idx > 0) {
+                    $tokens[] = ['type' => 'softBreak'];
+                }
+                $tokens = array_merge($tokens, $this->parseInlineContent(ltrim($line, '| ')));
+            }
+            return [
+                'type' => 'paragraph',
+                'children' => $tokens
+            ];
         }
 
         // Prima riga = headers
@@ -694,43 +704,44 @@ class Opale {
 }
 }
 
-// --- Esecuzione ---
-$input = '';
-if ($argc > 1) {
-    // Da file
-    $filename = $argv[1];
-    if (!file_exists($filename)) {
-        fwrite(STDERR, "File non trovato: $filename\n");
-        exit(1);
+// --- Esecuzione CLI ---
+if (PHP_SAPI === 'cli') {
+    $input = '';
+    if ($argc > 1) {
+        // Da file
+        $filename = $argv[1];
+        if (!file_exists($filename)) {
+            fwrite(STDERR, "File non trovato: $filename\n");
+            exit(1);
+        }
+        $input = file_get_contents($filename);
+    } else {
+        // Da stdin
+        $input = stream_get_contents(STDIN);
     }
-    $input = file_get_contents($filename);
-} else {
-    // Da stdin
-    $input = stream_get_contents(STDIN);
-}
 
-$parser = new Opale();
-$result = $parser->parse($input);
+    $parser = new Opale();
+    $result = $parser->parse($input);
 
-// Opzionale: includi metadata se presenti (frontmatter)
-$metadata = [];
-if (!empty($result) && $result[0]['type'] === 'frontmatter') {
-    // tenta di estrarre YAML semplice
-    $front = $result[0]['content'];
-    // Spostamento: rimuovi frontmatter dall'output principale
-    array_shift($result);
-    // Parsing YAML banale: righe "chiave: valore"
-    foreach (explode("\n", $front) as $line) {
-        if (preg_match('/^(\w[\w-]*)\s*:\s*(.*)/', $line, $m)) {
-            $metadata[$m[1]] = $m[2];
+    // Opzionale: includi metadata se presenti (frontmatter)
+    $metadata = [];
+    if (!empty($result) && $result[0]['type'] === 'frontmatter') {
+        // tenta di estrarre YAML semplice
+        $front = $result[0]['content'];
+        // Spostamento: rimuovi frontmatter dall'output principale
+        array_shift($result);
+        // Parsing YAML banale: righe "chiave: valore"
+        foreach (explode("\n", $front) as $line) {
+            if (preg_match('/^(\w[\w-]*)\s*:\s*(.*)/', $line, $m)) {
+                $metadata[$m[1]] = $m[2];
+            }
         }
     }
+
+    $final = [
+        'metadata' => $metadata,
+        'content' => $result
+    ];
+
+    echo json_encode($final, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
-
-$final = [
-    'metadata' => $metadata,
-    'content' => $result
-];
-
-header('Content-Type: application/json; charset=utf-8');
-echo json_encode($final, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
