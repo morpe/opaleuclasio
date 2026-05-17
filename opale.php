@@ -1,10 +1,10 @@
 <?php
 /**
- * op2js.php - Parser indipendente per note Obsidian Markdown → JSON
- * Uso: php op2js.php [file.md]   oppure pipe: cat nota.md | php op2js.php
+ * opale.php - Parser indipendente per note Obsidian Markdown → JSON
+ * Uso: php opale.php [file.md]   oppure pipe: cat nota.md | php opale.php
  */
 
-class OP2JParser {
+class Opale {
     private $lines;
     private $pos;
     private $len;
@@ -709,7 +709,7 @@ if ($argc > 1) {
     $input = stream_get_contents(STDIN);
 }
 
-$parser = new OP2JParser();
+$parser = new Opale();
 $result = $parser->parse($input);
 
 // Opzionale: includi metadata se presenti (frontmatter)
