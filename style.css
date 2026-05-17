@@ -1,0 +1,352 @@
+/* ============================================================
+   style.css — GitHub-style stylesheet for Euclasio output
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1f2328;
+  background-color: #ffffff;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Headings --- */
+.type-heading {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #d0d7de;
+}
+
+.level-1 { font-size: 2em; }
+.level-2 { font-size: 1.5em; }
+.level-3 { font-size: 1.25em; }
+.level-4 { font-size: 1em; }
+.level-5 { font-size: 0.875em; }
+.level-6 { font-size: 0.85em; color: #656d76; }
+
+/* --- Paragraphs --- */
+.type-paragraph {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* --- Horizontal Rule --- */
+.type-horizontalRule {
+  height: 0.25em;
+  padding: 0;
+  margin: 1.5rem 0;
+  background-color: #d0d7de;
+  border: 0;
+}
+
+/* --- Lists --- */
+.type-list,
+.type-taskList {
+  padding-left: 2em;
+  margin-bottom: 1rem;
+}
+
+.type-list.unordered {
+  list-style-type: disc;
+}
+
+.type-list.ordered {
+  list-style-type: decimal;
+}
+
+.type-listItem,
+.type-taskItem {
+  margin-top: 0.25rem;
+}
+
+.type-taskItem input[type="checkbox"] {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.type-list .type-list,
+.type-list .type-taskList,
+.type-taskList .type-list,
+.type-taskList .type-taskList {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+/* --- Tables --- */
+.type-table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.type-tr {
+  background-color: #ffffff;
+  border-top: 1px solid #d0d7de;
+}
+
+.type-th {
+  padding: 6px 13px;
+  font-weight: 600;
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+}
+
+.type-td {
+  padding: 6px 13px;
+  border: 1px solid #d0d7de;
+}
+
+/* --- Blockquotes --- */
+.type-blockquote {
+  margin: 0 0 1rem;
+  padding: 0 1em;
+  color: #656d76;
+  border-left: 0.25em solid #d0d7de;
+}
+
+/* --- Callouts --- */
+.type-callout {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 0.25em solid;
+  border-radius: 6px;
+  background-color: #f6f8fa;
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.callout-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+.callout-title-text {
+  flex: 1;
+}
+
+.callout-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+  color: inherit;
+}
+
+.callout-content {
+  font-weight: normal;
+}
+
+.callout-todo-item {
+  display: block;
+  margin: 0.25rem 0;
+}
+
+.callout-todo-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Callout kinds — border + icon colors */
+.callout-note       { border-left-color: #0969da; }
+.callout-abstract   { border-left-color: #0969da; }
+.callout-info       { border-left-color: #0969da; }
+.callout-todo       { border-left-color: #8250df; }
+.callout-tip        { border-left-color: #1a7f37; }
+.callout-success    { border-left-color: #1a7f37; }
+.callout-question   { border-left-color: #bc4c00; }
+.callout-warning    { border-left-color: #9a6700; }
+.callout-failure    { border-left-color: #cf222e; }
+.callout-danger     { border-left-color: #cf222e; }
+.callout-bug        { border-left-color: #cf222e; }
+.callout-example    { border-left-color: #8250df; }
+.callout-quote      { border-left-color: #656d76; }
+
+/* --- Code Blocks --- */
+.type-codeBlock {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.6;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+}
+
+.type-codeBlock code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  padding: 0;
+  margin: 0;
+  background: none;
+  font-size: 1em;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* --- Inline Code --- */
+.type-inlineCode {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 6px;
+}
+
+/* --- Math --- */
+.type-mathBlock {
+  margin: 1rem 0;
+  padding: 1rem;
+  text-align: center;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.type-inlineMath {
+  font-family: "Cambria Math", "Times New Roman", serif;
+}
+
+/* --- Images --- */
+.type-image {
+  max-width: 100%;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+/* --- Embeds --- */
+.type-embed {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem 0;
+  font-size: 0.875em;
+  color: #0969da;
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+}
+
+.type-embed:hover {
+  background-color: #e8ebef;
+  text-decoration: none;
+}
+
+/* --- Div / Alignment --- */
+.type-div {
+  margin: 1rem 0;
+}
+
+.type-align-left   { text-align: left; }
+.type-align-center { text-align: center; }
+.type-align-right  { text-align: right; }
+
+/* --- Inline Formatting --- */
+.type-strong {
+  font-weight: 600;
+}
+
+.type-em {
+  font-style: italic;
+}
+
+.type-del {
+  text-decoration: line-through;
+}
+
+.type-u {
+  text-decoration: underline;
+}
+
+.type-sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.type-sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+/* --- Links --- */
+.type-link,
+.type-wikilink {
+  color: #0969da;
+}
+
+.type-wikilink::before {
+  content: "🔗 ";
+  font-size: 0.85em;
+}
+
+/* --- Colored Text --- */
+.type-colored {
+  /* fallback — inline style applied by renderer */
+}
+
+.text-red    { color: #cf222e; }
+.text-green  { color: #1a7f37; }
+.text-blue   { color: #0969da; }
+.text-yellow { color: #9a6700; }
+.text-orange { color: #bc4c00; }
+.text-purple { color: #8250df; }
+.text-pink   { color: #bf3989; }
+.text-white  { color: #ffffff; }
+.text-black  { color: #000000; }
+
+/* --- Highlights --- */
+.type-highlight {
+  padding: 0.1em 0.2em;
+  background-color: #fff8c5;
+  border-radius: 3px;
+}
+
+.bg-red    { background-color: #ffebe9; }
+.bg-green  { background-color: #dafbe1; }
+.bg-blue   { background-color: #ddf4ff; }
+.bg-yellow { background-color: #fff8c5; }
+.bg-orange { background-color: #fff1e5; }
+.bg-purple { background-color: #f8deff; }
+.bg-pink   { background-color: #ffeff7; }
+.bg-white  { background-color: #ffffff; }
+.bg-black  { background-color: #000000; color: #ffffff; }

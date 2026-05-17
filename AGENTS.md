@@ -36,6 +36,14 @@ Output from `opale.php` is always:
 - Frontmatter YAML parsing is intentionally basic: only top-level `key: value` pairs.
 - Wikilinks render as `/post/<urlencoded-target>` — hardcoded URL pattern.
 - `update.sh` downloads fresh copies of both scripts from GitHub `main` branch (overwrites local files without backup).
+- `style.css` — GitHub-style stylesheet covering all CSS classes emitted by `euclasio.php` (`type-*`, `callout-*`, `text-*`, `bg-*`, alignment classes).
+
+## Styling
+
+- `style.css` provides a GitHub-flavored look for all Euclasio output classes.
+- Color classes (`text-red`, `bg-green`, etc.) map to the hex values in `euclasio.php`'s `$colorMap`.
+- Callout kinds (`callout-note`, `callout-warning`, etc.) get distinct left-border colors.
+- Include via `<link rel="stylesheet" href="style.css">` in any HTML wrapper.
 
 ## Quirks
 
