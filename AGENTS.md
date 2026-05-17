@@ -35,24 +35,23 @@ Output from `opale.php` is always:
 - `euclasio.php` uses PHP 8 `match` expressions for block/inline dispatch.
 - Frontmatter YAML parsing is intentionally basic: only top-level `key: value` pairs.
 - Wikilinks render as `/post/<urlencoded-target>` — hardcoded URL pattern.
-- `update.sh` downloads fresh copies of both scripts from GitHub `main` branch (overwrites local files).
+- `update.sh` downloads fresh copies of both scripts from GitHub `main` branch (overwrites local files without backup).
 
----
+## Quirks
 
-All 11 AGENTS.md claims verified ✅
-High-signal additions worth documenting:
+- Text nodes wrapped in `<!-- text IN -->...<!-- text OUT -->` HTML comments (debug artifact in euclasio output).
+- `softBreak` renders as space, not `<br>`.
+- No trailing newline from `euclasio` output.
+- Table cells are NOT processed for inline formatting — `htmlspecialchars()` only.
+- Blockquote/callout content is inline-only — no nested block support.
+- Only triple-backtick code fences supported — `~~~` not recognized.
+- Unclosed code fence or math block consumes to EOF silently.
+- Single-row tables (header only, no separator) silently become paragraphs.
+- `<p align>` and `<center>` in same paragraph block: `parseParagraph()` returns on first match, losing subsequent lines.
+- Dead code: `old_parseList()` (opale.php:511) and `convertMarkdownCheckbox()` (euclasio.php:346) are never called.
 
-- Text nodes wrapped in `<!-- text IN -->...<!-- text OUT -->` HTML comments (debug artifact)
-- softBreak renders as space, not <br>
-- Dead code: old_parseList() and convertMarkdownCheckbox() never called
-- Table cells are NOT processed for inline formatting
-- Blockquote/callout content is inline-only (no nested blocks)
-- No trailing newline from euclasio output
-- code fences not supported (only triple backticks)
+## Known bugs
 
-Bugs discovered:
-
-1. Link titles not extracted correctly — included in URL
-2. Callout titles duplicated in rendered content
-3. Ordered/unordered lists can merge incorrectly
-   Would you like me to update AGENTS.md with these findings, particularly the quirks and bugs that agents should be aware of?
+1. **Link titles included in URL** (`opale.php:208`) — regex captures title as part of URL; `title` field is always empty.
+2. **Callout title duplicated in content** (`opale.php:389`) — title text appended to `$lines` and joined into content, appearing twice in rendered HTML.
+3. **Ordered/unordered list merge** (`opale.php:612-703`) — list type determined by first item only; mixed lists render entirely as `<ul>` or `<ol>`.
