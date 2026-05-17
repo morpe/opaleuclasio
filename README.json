@@ -1,0 +1,1181 @@
+{
+    "metadata": [],
+    "content": [
+        {
+            "type": "heading",
+            "level": 1,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "✨ Opale & Euclasio"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "link",
+                    "url": "https://img.shields.io/badge/PHP-8.0%2B-blue",
+                    "title": "",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "![PHP Version"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": "](https://php.net)"
+                },
+                {
+                    "type": "softBreak"
+                },
+                {
+                    "type": "link",
+                    "url": "https://img.shields.io/badge/License-MIT-green",
+                    "title": "",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "![License"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": "](LICENSE)"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Opale"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " and "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Euclasio"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " are two lightweight, standalone PHP scripts that work together to convert "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Obsidian Markdown notes"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " into structured JSON, and then into semantic HTML."
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "ordered": false,
+            "items": [
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Opale"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "opale.php"
+                        },
+                        {
+                            "type": "text",
+                            "value": ") – parses Obsidian-flavoured Markdown and outputs a clean JSON AST."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Euclasio"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "euclasio.php"
+                        },
+                        {
+                            "type": "text",
+                            "value": ") – reads that JSON and renders it as HTML with sensible CSS classes."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Perfect for static site generators, custom blogs, or headless CMSs that rely on Obsidian as a source of truth."
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "✨ Features"
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "level": 3,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Opale (Markdown → JSON)"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "ordered": false,
+            "items": [
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Frontmatter extraction (simple YAML)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Headings, paragraphs, horizontal rules, tables, blockquotes"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Callouts"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " (foldable, with metadata)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Task lists"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " (nested checkboxes – "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "- [ ]"
+                        },
+                        {
+                            "type": "text",
+                            "value": " and "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "- [x]"
+                        },
+                        {
+                            "type": "text",
+                            "value": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Nested lists"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " (unordered, ordered, mixed)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Inline formatting: bold, italic, strikethrough, highlight ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "==text=="
+                        },
+                        {
+                            "type": "text",
+                            "value": "), underline, subscript, superscript, inline code, inline math ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "$...$"
+                        },
+                        {
+                            "type": "text",
+                            "value": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Wikilinks"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "[[Link]]"
+                        },
+                        {
+                            "type": "text",
+                            "value": " and standard Markdown links"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Embed support (images "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "![[image.png]]"
+                        },
+                        {
+                            "type": "text",
+                            "value": " and generic attachments)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Code blocks (with language hint)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Math blocks ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "$$ ... $$"
+                        },
+                        {
+                            "type": "text",
+                            "value": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Coloured text ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "<font color=\"#...\">"
+                        },
+                        {
+                            "type": "text",
+                            "value": ") and background highlights ("
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "<mark>"
+                        },
+                        {
+                            "type": "text",
+                            "value": ")"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "level": 3,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Euclasio (JSON → HTML)"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "ordered": false,
+            "items": [
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Converts the JSON AST back to "
+                        },
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "semantic HTML"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Adds useful CSS classes like "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "type-heading"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "type-paragraph"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "type-callout"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "type-taskItem"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", etc."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Maps hex colours to "
+                        },
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "human-readable class names"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " (e.g., "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "text-red"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "bg-green"
+                        },
+                        {
+                            "type": "text",
+                            "value": ")"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Respects "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "align"
+                        },
+                        {
+                            "type": "text",
+                            "value": " attributes (center, left, right, justify) as CSS classes"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Handles "
+                        },
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "nested task lists"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " recursively"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Callouts are rendered as "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "<blockquote>"
+                        },
+                        {
+                            "type": "text",
+                            "value": " with optional toggle button and icon placeholder"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Lazy‑friendly"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " – you can easily cache the resulting HTML"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "blockquote",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "📘 "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Note on frontmatter"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": ": Opale’s YAML parser is intentionally "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "basic"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": ". It only recognises top‑level "
+                },
+                {
+                    "type": "inlineCode",
+                    "value": "key: value"
+                },
+                {
+                    "type": "text",
+                    "value": " pairs. It does "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "not"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " support nested YAML structures, arrays, or multi‑line strings. If you need full YAML parsing, combine Opale with a proper YAML library (e.g., Symfony YAML or Spyc) after extracting the frontmatter block."
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "🚀 Quick Start"
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "level": 3,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "1. Clone or download"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "",
+            "code": "git clone https://github.com/morpe/opaleuclasio.git\ncd opaleuclasio\n\n### 2. Convert a Markdown file to JSON (Opale)\n```bash\nphp opale.php my-note.md > my-note.json\n````\n\nOr pipe from stdin:\n\n```bash\ncat my-note.md | php opale.php > my-note.json"
+        },
+        {
+            "type": "heading",
+            "level": 3,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "3. Convert the JSON to HTML (Euclasio)"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "bash",
+            "code": "php euclasio.php my-note.json > my-note.html"
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Or pipe:"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "bash",
+            "code": "cat my-note.json | php euclasio.php > my-note.html"
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "📝 Example"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Input"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " ("
+                },
+                {
+                    "type": "inlineCode",
+                    "value": "todo.md"
+                },
+                {
+                    "type": "text",
+                    "value": "):"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "markdown",
+            "code": "- [x] Buy milk\n- [ ] Write blog post\n    - [ ] Outline\n    - [x] Draft"
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Command"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": ":"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "bash",
+            "code": "php opale.php todo.md | php euclasio.php"
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Output (HTML)"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": ":"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "html",
+            "code": "<ul class=\"type-taskList\">\n\t<li class=\"type-taskItem\"><input type=\"checkbox\" checked /> Buy milk</li>\n\t<li class=\"type-taskItem\">\n\t\t<input type=\"checkbox\" /> Write blog post\n\t\t<ul class=\"type-taskList\">\n\t\t\t<li class=\"type-taskItem\"><input type=\"checkbox\" /> Outline</li>\n\t\t\t<li class=\"type-taskItem\">\n\t\t\t\t<input type=\"checkbox\" checked /> Draft\n\t\t\t</li>\n\t\t</ul>\n\t</li>\n</ul>"
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "🧠 JSON AST structure (simplified)"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Opale produces a JSON object with two keys:"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "ordered": false,
+            "items": [
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "inlineCode",
+                            "value": "metadata"
+                        },
+                        {
+                            "type": "text",
+                            "value": " – extracted frontmatter (simple key‑value pairs)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "inlineCode",
+                            "value": "content"
+                        },
+                        {
+                            "type": "text",
+                            "value": " – array of block nodes"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Each block has a "
+                },
+                {
+                    "type": "inlineCode",
+                    "value": "type"
+                },
+                {
+                    "type": "text",
+                    "value": " and type‑specific fields. Inline nodes are recursively nested inside "
+                },
+                {
+                    "type": "inlineCode",
+                    "value": "children"
+                },
+                {
+                    "type": "text",
+                    "value": " arrays."
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Example snippet:"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "language": "json",
+            "code": "{\n\t\"metadata\": { \"title\": \"My note\" },\n\t\"content\": [\n\t\t{\n\t\t\t\"type\": \"heading\",\n\t\t\t\"level\": 1,\n\t\t\t\"children\": [{ \"type\": \"text\", \"value\": \"Hello world\" }]\n\t\t},\n\t\t{\n\t\t\t\"type\": \"taskList\",\n\t\t\t\"items\": [\n\t\t\t\t{\n\t\t\t\t\t\"type\": \"taskItem\",\n\t\t\t\t\t\"checked\": false,\n\t\t\t\t\t\"children\": [{ \"type\": \"text\", \"value\": \"Euclasio rocks\" }]\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}"
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "🎨 Customisation"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "ordered": false,
+            "items": [
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "CSS classes"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " – Euclasio uses class names like "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "type-paragraph"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "callout-note"
+                        },
+                        {
+                            "type": "text",
+                            "value": ", "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "text-red"
+                        },
+                        {
+                            "type": "text",
+                            "value": ". You can style them in your own stylesheet."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Callout icons"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " – The renderer adds classes like "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "icon-note"
+                        },
+                        {
+                            "type": "text",
+                            "value": ". You can implement icons via CSS pseudo‑elements or a font icon library."
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "strong",
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "value": "Colour mapping"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": " – Modify the "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "$colorMap"
+                        },
+                        {
+                            "type": "text",
+                            "value": " array inside "
+                        },
+                        {
+                            "type": "inlineCode",
+                            "value": "euclasio.php"
+                        },
+                        {
+                            "type": "text",
+                            "value": " to match your design system (Tailwind, Bootstrap, etc.)."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "📦 Requirements"
+                }
+            ]
+        },
+        {
+            "type": "list",
+            "ordered": false,
+            "items": [
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "PHP 8.0 or later (7.4 might work, but not tested)"
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "ordered": false,
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "No external dependencies (pure PHP)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "🤝 Contributing"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Issues and pull requests are welcome! Feel free to improve the parsers, add new Markdown features, or enhance the HTML output."
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "📄 License"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "MIT © "
+                },
+                {
+                    "type": "link",
+                    "url": "https://github.com/morpe",
+                    "title": "",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "morpe"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "horizontalRule"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "children": [
+                {
+                    "type": "text",
+                    "value": "🙏 Acknowledgements"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "children": [
+                {
+                    "type": "text",
+                    "value": "Inspired by the Obsidian community and the need for a simple, portable Markdown → HTML pipeline.  "
+                },
+                {
+                    "type": "softBreak"
+                },
+                {
+                    "type": "text",
+                    "value": "Named after the gemstones "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Opale"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " (for the colourful JSON) and "
+                },
+                {
+                    "type": "strong",
+                    "children": [
+                        {
+                            "type": "text",
+                            "value": "Euclasio"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "value": " (for the rare, polished HTML)."
+                }
+            ]
+        }
+    ]
+}
