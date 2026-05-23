@@ -7,6 +7,13 @@
 
 class Euclasio
 {
+    private string $wikiLinkPrefix;
+
+    public function __construct(string $wikiLinkPrefix = '/post/')
+    {
+        $this->wikiLinkPrefix = rtrim($wikiLinkPrefix, '/') . '/';
+    }
+
     // Mappa icone per callout
     private array $calloutIcons = [
         'note' => 'icon-note', 'abstract' => 'icon-abstract', 'info' => 'icon-info',
@@ -303,7 +310,7 @@ class Euclasio
     {
         $target = urlencode($node['target'] ?? '');
         $content = $this->renderInline($node['children'] ?? []);
-        return "<a href=\"/post/{$target}\" class=\"type-wikilink\">{$content}</a>";
+        return "<a href=\"{$this->wikiLinkPrefix}{$target}\" class=\"type-wikilink\">{$content}</a>";
     }
 
     private function renderLink(array $node): string
