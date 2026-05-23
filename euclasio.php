@@ -11,7 +11,8 @@ class Euclasio
 
     public function __construct(string $wikiLinkPrefix = '/post/')
     {
-        $this->wikiLinkPrefix = rtrim($wikiLinkPrefix, '/') . '/';
+        $prefix = rtrim($wikiLinkPrefix, '/');
+        $this->wikiLinkPrefix = $prefix === '' ? '' : $prefix . '/';
     }
 
     // Mappa icone per callout
