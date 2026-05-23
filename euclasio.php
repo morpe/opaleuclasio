@@ -319,8 +319,14 @@ class Euclasio
         $url = htmlspecialchars($node['url'] ?? '');
         $title = htmlspecialchars($node['title'] ?? '');
         $titleAttr = $title ? " title=\"{$title}\"" : '';
+        $extAttr = $this->isExternalUrl($node['url'] ?? '') ? ' target="_blank" rel="noopener noreferrer"' : '';
         $content = $this->renderInline($node['children'] ?? []);
-        return "<a href=\"{$url}\"{$titleAttr} class=\"type-link\">{$content}</a>";
+        return "<a href=\"{$url}\"{$titleAttr}{$extAttr} class=\"type-link\">{$content}</a>";
+    }
+
+    private function isExternalUrl(string $url): bool
+    {
+        return str_starts_with($url, 'http://') || str_starts_with($url, 'https://');
     }
 
     private function renderColored(array $node): string
