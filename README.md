@@ -36,6 +36,7 @@ Perfect for static site generators, custom blogs, or headless CMSs that rely on 
 - Respects `align` attributes (center, left, right, justify) as CSS classes
 - Handles **nested task lists** recursively
 - Callouts are rendered as `<blockquote>` with optional toggle button and icon placeholder
+- Wikilinks `[[target]]` render as clean, URL‑safe slugs via `slugify.php` (WordPress‑style sanitisation)
 - **Lazy‑friendly** – you can easily cache the resulting HTML
 
 ---
@@ -154,6 +155,25 @@ Example snippet:
 - **CSS classes** – Euclasio uses class names like `type-paragraph`, `callout-note`, `text-red`. You can style them in your own stylesheet.
 - **Callout icons** – The renderer adds classes like `icon-note`. You can implement icons via CSS pseudo‑elements or a font icon library.
 - **Colour mapping** – Modify the `$colorMap` array inside `euclasio.php` to match your design system (Tailwind, Bootstrap, etc.).
+
+---
+
+## 🔗 Wikilink slug generation (`slugify.php`)
+
+Wikilinks (`[[Titolo post]]`) are converted to URL‑safe slugs using the `Slugify` trait in `slugify.php`, included by `euclasio.php`.
+
+The algorithm follows WordPress's `sanitize_title()` rules:
+1. **Lowercase** (UTF‑8 safe)
+2. **Transliteration** of accented characters (`é` → `e`, `ñ` → `n`, …)
+3. **Removal of `.md`** suffix (so `file.md` slugs as `file`)
+4. **Strip** everything except `[a-z0-9\s\-_]`
+5. **Spaces and underscores** → hyphen `-`
+6. **Collapse** repeated hyphens
+7. **Trim** leading/trailing hyphens
+
+The trait is designed to be reused by any other PHP class — just add `use Slugify;`.
+
+See [`slugify.md`](slugify.md) for full documentation.
 
 ---
 
