@@ -6,6 +6,7 @@ trait Slugify
     {
         $text = mb_strtolower($text, 'UTF-8');
         $text = $this->transliterate($text);
+        $text = str_replace('.md', '', $text);
         $text = preg_replace('/[^a-z0-9\s\-_]/', '', $text);
         $text = preg_replace('/[\s_]+/', '-', $text);
         $text = preg_replace('/-+/', '-', $text);
