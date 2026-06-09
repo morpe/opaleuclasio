@@ -173,8 +173,7 @@ class Euclasio
         $kind = $block['kind'] ?? 'note';
         $title = htmlspecialchars($block['title'] ?? ucfirst($kind));
         $foldable = $block['foldable'] ?? false;
-        // Se foldable è true e open non è specificato, default chiuso (open = false)
-        $open = $block['open'] ?? ($foldable ? false : true);
+        $open = $block['open'] ?? true;
         
         $iconClass = $this->calloutIcons[$kind] ?? 'icon-default';
         

@@ -171,6 +171,13 @@ img {
   font-size: 1em;
   padding: 0;
   color: inherit;
+  transition: transform 0.2s ease;
+}
+.type-callout[data-state="open"] .callout-toggle {
+  transform: rotate(180deg);
+}
+.type-callout[data-state="closed"] .callout-content {
+  display: none;
 }
 
 .callout-content {
