@@ -194,9 +194,15 @@ class Opale {
         while ($pos < $len) {
             // Cerca la prima occorrenza tra tutti i pattern
             $patterns = [
-                // Sintassi standard
+                // Bold+Italic (prima di bold/italic per matchare *** e ___)
+                'boldItalic_asterisk' => '/\*\*\*(.+?)\*\*\*/',
+                'boldItalic_underscore' => '/_{3}(.+?)_{3}/',
+                // Bold
                 'bold' => '/\*\*(.+?)\*\*/',
-                'italic' => '/(?<!\w)\*(.+?)\*(?!\w)/',   // asterisco senza caratteri alfabetici adiacenti
+                'bold_underscore' => '/(?<!\w)_{2}(.+?)_{2}(?!\w)/',
+                // Italic
+                'italic' => '/(?<!\w)\*(.+?)\*(?!\w)/',
+                'italic_underscore' => '/(?<!\w)_(.+?)_(?!\w)/',
                 'strikethrough' => '/~~(.+?)~~/',
                 'highlight' => '/==(.+?)==/',
                 'underline' => '/<u>(.+?)<\/u>/',
@@ -247,13 +253,27 @@ class Opale {
             $pos = $matchEnd;
 
             switch ($matchedType) {
+                case 'boldItalic_asterisk':
+                case 'boldItalic_underscore':
+                    $tokens[] = [
+                        'type' => 'strong',
+                        'children' => [
+                            [
+                                'type' => 'emphasis',
+                                'children' => $this->tokenizeInline($matchedData[1][0])
+                            ]
+                        ]
+                    ];
+                    break;
                 case 'bold':
+                case 'bold_underscore':
                     $tokens[] = [
                         'type' => 'strong',
                         'children' => $this->tokenizeInline($matchedData[1][0])
                     ];
                     break;
                 case 'italic':
+                case 'italic_underscore':
                     $tokens[] = [
                         'type' => 'emphasis',
                         'children' => $this->tokenizeInline($matchedData[1][0])
