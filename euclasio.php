@@ -311,9 +311,11 @@ class Euclasio
 
     private function renderWikilink(array $node): string
     {
-        $target = $this->slugify($node['target'] ?? '');
+        // Sostituisci separatori di path con trattini prima di slugificare
+        $target = str_replace('/', '-', $node['target'] ?? '');
+        $slug = $this->slugify($target);
         $content = $this->renderInline($node['children'] ?? []);
-        return "<a href=\"{$this->wikiLinkPrefix}{$target}\" class=\"type-wikilink\">{$content}</a>";
+        return "<a href=\"{$this->wikiLinkPrefix}{$slug}\" class=\"type-wikilink\">{$content}</a>";
     }
 
     private function renderLink(array $node): string
