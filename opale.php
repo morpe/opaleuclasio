@@ -130,13 +130,9 @@ class Opale {
             $this->pos++;
         }
 
-        // Costruisci array di token con softBreak tra le righe
-        $tokens = [];
-        foreach ($paraLines as $idx => $line) {
-            if ($idx > 0) {
-                $tokens[] = ['type' => 'softBreak'];
-            }
-            // Gestione tag HTML a blocco (allineamento)
+        // Verifica paragrafi con unica riga e tag HTML a blocco
+        if (count($paraLines) === 1) {
+            $line = $paraLines[0];
             if (preg_match('/^<p\s+align="(.*?)"\s*>(.*)<\/p>\s*$/is', $line, $m)) {
                 return [
                     'type' => 'div',
@@ -161,10 +157,12 @@ class Opale {
                     ]
                 ];
             }
-
-            $inlineTokens = $this->parseInlineContent($line);
-            $tokens = array_merge($tokens, $inlineTokens);
         }
+
+        // Unisci tutte le righe e processa inline content in un colpo solo
+        $joined = implode("\n", $paraLines);
+        $tokens = $this->parseInlineContent($joined);
+        $tokens = $this->splitOnNewlines($tokens);
 
         return [
             'type' => 'paragraph',
@@ -186,6 +184,30 @@ class Opale {
         return $this->tokenizeInline($text);
     }
 
+    private function splitOnNewlines(array $tokens): array
+    {
+        $result = [];
+        foreach ($tokens as $token) {
+            if ($token['type'] === 'text' && str_contains($token['value'], "\n")) {
+                $parts = explode("\n", $token['value']);
+                foreach ($parts as $i => $part) {
+                    if ($i > 0) {
+                        $result[] = ['type' => 'softBreak'];
+                    }
+                    if ($part !== '') {
+                        $result[] = ['type' => 'text', 'value' => $part];
+                    }
+                }
+            } else {
+                if (isset($token['children'])) {
+                    $token['children'] = $this->splitOnNewlines($token['children']);
+                }
+                $result[] = $token;
+            }
+        }
+        return $result;
+    }
+
     private function tokenizeInline($text) {
         $tokens = [];
         $len = strlen($text);
@@ -195,24 +217,24 @@ class Opale {
             // Cerca la prima occorrenza tra tutti i pattern
             $patterns = [
                 // Bold+Italic (prima di bold/italic per matchare *** e ___)
-                'boldItalic_asterisk' => '/\*\*\*(.+?)\*\*\*/',
-                'boldItalic_underscore' => '/_{3}(.+?)_{3}/',
+                'boldItalic_asterisk' => '/\*\*\*(.+?)\*\*\*/s',
+                'boldItalic_underscore' => '/_{3}(.+?)_{3}/s',
                 // Bold
-                'bold' => '/\*\*(.+?)\*\*/',
-                'bold_underscore' => '/(?<!\w)_{2}(.+?)_{2}(?!\w)/',
+                'bold' => '/\*\*(.+?)\*\*/s',
+                'bold_underscore' => '/(?<!\w)_{2}(.+?)_{2}(?!\w)/s',
                 // Italic
-                'italic' => '/(?<!\w)\*(.+?)\*(?!\w)/',
-                'italic_underscore' => '/(?<!\w)_(.+?)_(?!\w)/',
-                'strikethrough' => '/~~(.+?)~~/',
-                'highlight' => '/==(.+?)==/',
-                'underline' => '/<u>(.+?)<\/u>/',
-                'subscript' => '/<sub>(.+?)<\/sub>/',
-                'superscript' => '/<sup>(.+?)<\/sup>/',
-                'code' => '/`(.+?)`/',
-                'math' => '/\$(.+?)\$/',
-                'wikilink' => '/\[\[(.+?)\]\]/',
+                'italic' => '/(?<!\w)\*(.+?)\*(?!\w)/s',
+                'italic_underscore' => '/(?<!\w)_(.+?)_(?!\w)/s',
+                'strikethrough' => '/~~(.+?)~~/s',
+                'highlight' => '/==(.+?)==/s',
+                'underline' => '/<u>(.+?)<\/u>/s',
+                'subscript' => '/<sub>(.+?)<\/sub>/s',
+                'superscript' => '/<sup>(.+?)<\/sup>/s',
+                'code' => '/`(.+?)`/s',
+                'math' => '/\$(.+?)\$/s',
+                'wikilink' => '/\[\[(.+?)\]\]/s',
                 'link' => '/\[([^\]]+)\]\(([^)]+)(?:\s+"([^"]*)")?\)/',
-                'embed' => '/!\[\[(.+?)\]\]/',
+                'embed' => '/!\[\[(.+?)\]\]/s',
                 'font' => '/<font\s+color="([^"]*)"\s*>(.+?)<\/font>/is',
                 'mark' => '/<mark\s+style="background:([^"]*)"\s*>(.+?)<\/mark>/is',
             ];
